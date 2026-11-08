@@ -1,51 +1,215 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Simple Webpage</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f9;
-            color: #333;
-            text-align: center;
-        }
-        header {
-            background-color: #007bff;
-            color: white;
-            padding: 2rem;
-        }
-        main {
-            padding: 2rem;
-        }
-        footer {
-            background-color: #333;
-            color: white;
-            padding: 1rem;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-    </style>
+<html lang="en" style="--accent: #c5a059; --r: 26px;"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Premium Leather Wallet</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--accent:#c5a059;--bg:#f6f3ec;--card:#fff;--text:#222;--muted:#6b6b6b;--line:#e6e0d3;--ink:#16130e}
+body.dark{--bg:#0e0d0b;--card:#1a1814;--text:#eee8da;--muted:#a49c8a;--line:#2c2820;--ink:#000}
+body{font-family:Georgia,'Times New Roman',serif;background:var(--bg);color:var(--text);line-height:1.6;transition:.3s}
+button,input,textarea,select{font-family:'Segoe UI',system-ui,sans-serif}
+.toolbar{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;padding:12px 18px;background:color-mix(in srgb,var(--card) 88%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.brand{letter-spacing:4px;text-transform:uppercase;font-size:.85rem;color:var(--accent);font-weight:700}
+.tools{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.btn{padding:9px 16px;border-radius:10px;border:1px solid var(--line);background:transparent;color:var(--text);cursor:pointer;font-size:.88rem;font-weight:600;transition:.2s}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
+.btn.gold{background:linear-gradient(135deg,var(--accent),color-mix(in srgb,var(--accent) 60%,#fff));color:#111;border:none}
+.btn.gold:hover{color:#111;filter:brightness(1.08);transform:translateY(-1px)}
+.btn.red{color:#d9534f}
+.switch{width:50px;height:26px;border-radius:13px;background:var(--line);position:relative;cursor:pointer}
+.switch::after{content:'☀';position:absolute;top:2px;left:2px;width:22px;height:22px;border-radius:50%;background:#fff;font-size:.8rem;display:flex;align-items:center;justify-content:center;transition:.3s}
+body.dark .switch::after{transform:translateX(24px);content:'☾';background:var(--accent)}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--ink);color:#fff;padding:10px 22px;border-radius:30px;font-size:.88rem;z-index:3000;opacity:0;transition:.35s;font-family:'Segoe UI',sans-serif}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+.wrap{max-width:1150px;margin:0 auto;padding:50px 20px}
+header{text-align:center;margin-bottom:46px}
+header h1{font-size:clamp(1.8rem,5vw,2.9rem);letter-spacing:5px;text-transform:uppercase;font-weight:400}
+header .line{width:70px;height:2px;background:var(--accent);margin:16px auto}
+header p{color:var(--muted);font-style:italic;font-size:1.1rem}
+.product{display:grid;grid-template-columns:1fr 1fr;gap:56px;background:var(--card);padding:48px;border-radius:var(--r,26px);border:1px solid var(--line);box-shadow:0 30px 80px rgba(0,0,0,.08)}
+.main{position:relative;border-radius:calc(var(--r,26px) - 8px);overflow:hidden;cursor:zoom-in;background:var(--line)}
+.main img{width:100%;height:480px;object-fit:cover;display:block;transition:transform .6s}
+.main:hover img{transform:scale(1.06)}
+.badge{position:absolute;top:14px;left:14px;background:var(--accent);color:#111;padding:5px 12px;border-radius:20px;font:700 .78rem 'Segoe UI',sans-serif}
+.heart{position:absolute;top:12px;right:12px;width:40px;height:40px;border-radius:50%;border:none;background:rgba(255,255,255,.92);font-size:1.2rem;cursor:pointer;color:#999}
+.heart.on{color:#e0245e}
+.thumbs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+.thumbs img{width:100%;height:84px;object-fit:cover;border-radius:10px;cursor:pointer;opacity:.6;border:2px solid transparent;transition:.25s}
+.thumbs img.on,.thumbs img:hover{opacity:1;border-color:var(--accent)}
+.info{display:flex;flex-direction:column;gap:16px}
+.cat{font:600 .8rem 'Segoe UI',sans-serif;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent)}
+.info h2{font-size:2.1rem;font-weight:400;line-height:1.25}
+.stars{color:var(--accent);letter-spacing:2px;font-size:1rem}
+.stars small{color:var(--muted);font:.82rem 'Segoe UI',sans-serif;letter-spacing:0;margin-left:8px}
+.price{font-size:1.9rem;font-weight:700}
+.price s{font-size:1rem;color:var(--muted);font-weight:400;margin:0 8px}
+.price em{font:700 .8rem 'Segoe UI',sans-serif;color:#2e9e5b;font-style:normal;background:rgba(46,158,91,.12);padding:3px 10px;border-radius:20px}
+.desc{color:var(--muted);line-height:1.85}
+.features{list-style:none}
+.features li{padding:9px 0;border-bottom:1px solid var(--line);font-family:'Segoe UI',sans-serif;font-size:.95rem}
+.features li::before{content:'✦';color:var(--accent);margin-right:10px}
+.opt{font:600 .85rem 'Segoe UI',sans-serif;margin-bottom:8px}
+.opt b{color:var(--accent)}
+.swatches{display:flex;gap:12px;flex-wrap:wrap}
+.sw{width:34px;height:34px;border-radius:50%;cursor:pointer;border:3px solid var(--card);box-shadow:0 0 0 1.5px var(--line);transition:.2s}
+.sw.on{box-shadow:0 0 0 2.5px var(--accent);transform:scale(1.1)}
+.buy{display:flex;gap:12px;margin-top:6px}
+.qty{display:flex;align-items:center;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.qty button{width:40px;height:100%;border:none;background:transparent;color:var(--text);font-size:1.2rem;cursor:pointer}
+.qty span{min-width:30px;text-align:center;font-family:'Segoe UI',sans-serif;font-weight:700}
+.buy .btn{flex:1;padding:15px;font-size:.95rem;letter-spacing:1.5px;text-transform:uppercase}
+.trust{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;text-align:center;font:.78rem 'Segoe UI',sans-serif;color:var(--muted)}
+.trust div{padding:12px 6px;border:1px solid var(--line);border-radius:12px}
+.trust b{display:block;font-size:1.3rem}
+footer{text-align:center;color:var(--muted);padding:50px 10px 10px;font-size:.9rem}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(5px);z-index:1000;display:none;align-items:center;justify-content:center;padding:14px}
+.ov.open{display:flex}
+.box{background:var(--card);border-radius:20px;width:100%;max-width:470px;max-height:92vh;overflow:auto;padding:28px;animation:up .3s}
+@keyframes up{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+.box h3{font-weight:400;font-size:1.4rem;margin-bottom:14px}
+.panel{max-width:520px;padding:0;display:flex;flex-direction:column;height:92vh}
+.panel .hd{padding:18px 22px;background:var(--ink);color:#fff;display:flex;justify-content:space-between;align-items:center;border-radius:20px 20px 0 0}
+.panel .bd{padding:20px 22px;overflow:auto;flex:1}
+.panel .ft{padding:14px 22px;border-top:1px solid var(--line);display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
+.f{margin-bottom:14px}
+.f label{display:block;font:600 .82rem 'Segoe UI',sans-serif;margin-bottom:5px}
+.f input,.f textarea,.f select{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--text);font-size:.93rem}
+.f textarea{min-height:78px;resize:vertical}
+.f small{color:var(--muted);font:.74rem 'Segoe UI',sans-serif}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.imgrow{display:flex;gap:8px}.imgrow input{flex:1}
+.sum{background:var(--bg);border-radius:12px;padding:14px;font:.9rem 'Segoe UI',sans-serif;margin-bottom:14px}
+.sum div{display:flex;justify-content:space-between;padding:3px 0}
+.sum .t{border-top:1px solid var(--line);margin-top:6px;padding-top:8px;font-weight:700;color:var(--accent)}
+.hint{position:absolute;bottom:12px;right:12px;background:rgba(0,0,0,.6);color:#fff;padding:5px 11px;border-radius:20px;font:.75rem 'Segoe UI',sans-serif;pointer-events:none}
+.cbox{border:1px solid var(--line);border-radius:12px;padding:8px;margin-bottom:10px}.cbox .row{margin-bottom:6px}.cbox .row:last-child{margin-bottom:0}
+.vw{flex-direction:column;background:rgba(0,0,0,.96);gap:10px;padding:12px;justify-content:flex-start}
+.vx{align-self:flex-end;width:42px;height:42px;border-radius:50%;border:1px solid #555;background:rgba(255,255,255,.1);color:#fff;font-size:1.2rem;cursor:pointer;flex:none}
+.vstage{position:relative;display:flex;align-items:center;justify-content:center;flex:1;min-height:0;width:100%;overflow:hidden}
+.vstage img{max-width:100%;max-height:100%;object-fit:contain;border-radius:12px;transition:transform .3s;cursor:zoom-in}
+.vstage img.z{transform:scale(2.2);cursor:zoom-out}
+.vnav{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;border:none;background:rgba(255,255,255,.18);color:#fff;font-size:1.8rem;cursor:pointer;z-index:2}
+#vPrev{left:4px}#vNext{right:4px}
+.vinfo{color:#fff;font:.9rem 'Segoe UI',sans-serif;flex:none}.vinfo b{color:var(--accent)}
+.vsw,.vth{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;flex:none}
+.vth img{width:56px;height:56px;object-fit:cover;border-radius:8px;opacity:.55;border:2px solid transparent;cursor:pointer}
+.vth img.on{opacity:1;border-color:var(--accent)}
+.sec{font:700 .75rem 'Segoe UI',sans-serif;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin:22px 0 10px;padding-top:14px;border-top:1px solid var(--line)}
+.row{display:flex;gap:6px;align-items:center;margin-bottom:8px}
+.row input[type=text]{flex:1;min-width:0;padding:9px 10px;border:1px solid var(--line);border-radius:9px;background:var(--bg);color:var(--text)}
+.row input[type=color]{width:42px;height:38px;border:none;background:none;padding:0;cursor:pointer;flex:none}
+.row img{width:46px;height:46px;border-radius:8px;object-fit:cover;flex:none}
+.mini{width:34px;height:34px;border:1px solid var(--line);border-radius:8px;background:transparent;color:var(--text);cursor:pointer;flex:none}
+.mini:hover{border-color:var(--accent);color:var(--accent)}
+.mini.x{color:#d9534f}
+.addrow{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px}
+.chk{display:flex;align-items:center;gap:10px;font:.9rem 'Segoe UI',sans-serif;padding:6px 0;cursor:pointer}
+.chk input{width:20px;height:20px;accent-color:var(--accent)}
+.rev .product{direction:rtl}.rev .product>*{direction:ltr}
+.buy{flex-wrap:wrap}.buy .btn{min-width:130px}
+#addCart{border-color:var(--accent);color:var(--accent)}
+.btn:disabled{opacity:.4;pointer-events:none}
+.cartbtn{position:relative;padding:8px 13px;font-size:1.05rem}
+.cbadge{position:absolute;top:-8px;right:-8px;min-width:20px;height:20px;border-radius:10px;background:var(--accent);color:#111;font:700 .72rem 'Segoe UI',sans-serif;display:none;align-items:center;justify-content:center;padding:0 5px}
+.cbadge.on{display:flex}
+@keyframes pop{50%{transform:scale(1.6)}}
+.cbadge.pop{animation:pop .35s}
+.ci{display:flex;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line);font-family:'Segoe UI',sans-serif}
+.ci img{width:58px;height:58px;border-radius:10px;object-fit:cover;flex:none}
+.ci .m{flex:1;min-width:0}.ci .m b{display:block;font-size:.92rem}.ci .m small{color:var(--muted)}
+.ci .q{display:flex;align-items:center;gap:8px;margin-top:6px;font-weight:700}.ci .q .mini{width:28px;height:28px}
+.ctot{display:flex;justify-content:space-between;font:700 1.15rem 'Segoe UI',sans-serif;padding:14px 0;color:var(--accent)}
+.published .admin{display:none!important}
+@media(max-width:800px){.product{grid-template-columns:1fr;padding:22px;gap:28px}.main img{height:340px}.two{grid-template-columns:1fr}}
+</style>
 </head>
-<body>
+<body class="dark published" style="font-family: Georgia, &quot;Times New Roman&quot;, serif;">
+<div class="toolbar">
+  <div class="brand" id="brand">Luxe Goods</div>
+  <div class="tools">
+    <button class="btn cartbtn" id="cartBtn" title="Cart">🛒<span class="cbadge" id="cBadge">0</span></button>
+    <div class="switch" id="darkSw" title="Dark / Light"></div>
+    <button class="btn admin" id="editBtn">✎ Edit</button>
+    <button class="btn red admin" id="resetBtn">Reset</button>
+    <button class="btn gold admin" id="expBtn">Export</button>
+  </div>
+</div>
 
-    <header>
-        <h1>Welcome to My Website</h1>
-        <p>Built with simplicity and speed in mind.</p>
-    </header>
+<div class="wrap">
+  <header><h1 id="vTitle">Premium Leather Wallet</h1><div class="line"></div><p id="vSub">Handcrafted luxury for everyday elegance</p></header>
+  <div class="product">
+    <div>
+      <div class="main" id="mainBox"><span class="badge" id="vBadge">New Arrival</span><button class="heart" id="heart" title="Wishlist">♥</button><span class="hint">🔍 Tap to view</span><img id="mainImg" alt="Product" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22600%22%3E%3Crect%20width%3D%22800%22%20height%3D%22600%22%20fill%3D%22%232a2620%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22310%22%20fill%3D%22%23c5a059%22%20font-size%3D%2230%22%20text-anchor%3D%22middle%22%20font-family%3D%22Georgia%22%3EImage%20not%20available%3C%2Ftext%3E%3C%2Fsvg%3E"></div>
+      <div class="thumbs" id="thumbs"><img src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22600%22%3E%3Crect%20width%3D%22800%22%20height%3D%22600%22%20fill%3D%22%232a2620%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22310%22%20fill%3D%22%23c5a059%22%20font-size%3D%2230%22%20text-anchor%3D%22middle%22%20font-family%3D%22Georgia%22%3EImage%20not%20available%3C%2Ftext%3E%3C%2Fsvg%3E" class="on"><img src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22600%22%3E%3Crect%20width%3D%22800%22%20height%3D%22600%22%20fill%3D%22%232a2620%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22310%22%20fill%3D%22%23c5a059%22%20font-size%3D%2230%22%20text-anchor%3D%22middle%22%20font-family%3D%22Georgia%22%3EImage%20not%20available%3C%2Ftext%3E%3C%2Fsvg%3E"><img src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22600%22%3E%3Crect%20width%3D%22800%22%20height%3D%22600%22%20fill%3D%22%232a2620%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22310%22%20fill%3D%22%23c5a059%22%20font-size%3D%2230%22%20text-anchor%3D%22middle%22%20font-family%3D%22Georgia%22%3EImage%20not%20available%3C%2Ftext%3E%3C%2Fsvg%3E"></div>
+    </div>
+    <div class="info">
+      <div class="cat" id="vCat">Men's Accessories</div>
+      <h2 id="vName">Executive Slim Wallet</h2>
+      <div class="stars" id="vStars">★★★★★<small>4.8 / 5</small></div>
+      <div class="price"><span id="vPrice">$25</span><s id="vOld">$35</s><em id="vOff">29% OFF</em></div>
+      <p class="desc" id="vDesc">Crafted from full-grain Italian leather with RFID protection. Slim profile fits 8 cards and bills. Hand-stitched edges for lasting durability.</p>
+      <ul class="features" id="vFeat"><li>Genuine Italian leather</li><li>RFID blocking technology</li><li>8 card slots + bill compartment</li><li>Slim, pocket-friendly design</li><li>2-year warranty</li></ul>
+      <div><div class="opt">Colour: <b id="colName">Black</b></div><div class="swatches" id="swatches"><div class="sw on" title="Black" style="background: rgb(26, 26, 26);"></div><div class="sw" title="Brown" style="background: rgb(93, 64, 55);"></div><div class="sw" title="Navy" style="background: rgb(26, 35, 126);"></div></div></div>
+      <div class="buy">
+        <div class="qty"><button id="qm">−</button><span id="qv">1</span><button id="qp">+</button></div>
+        <button class="btn" id="addCart">🛒 Add to Cart</button><button class="btn gold" id="buyBtn">Buy Now</button>
+      </div>
+      <div class="trust"><div><b>🚚</b>Fast Delivery</div><div><b>🔒</b>Secure Order</div><div><b>↩</b>Easy Returns</div></div>
+    </div>
+  </div>
+  <footer id="vFooter">© 2026 Luxe Goods. All rights reserved.</footer>
+</div>
 
-    <main>
-        <h2>About This Page</h2>
-        <p>This is a basic HTML template. You can edit this file to add your own content, styles, and links.</p>
-    </main>
+<!-- Edit panel -->
+<div class="ov" id="editOv"><div class="box panel">
+  <div class="hd"><h3 style="margin:0">Control Panel</h3><button class="btn" style="color:#fff;border-color:#555" data-close="editOv">Close</button></div>
+  <div class="bd" id="panelBody">
+    <div class="two"><div class="f"><label>Shop Name</label><input data-k="brand"></div><div class="f"><label>Badge</label><input data-k="badge"></div></div>
+    <div class="f"><label>Page Title</label><input data-k="title"></div>
+    <div class="f"><label>Subtitle</label><input data-k="subtitle"></div>
+    <div class="two"><div class="f"><label>Product Name</label><input data-k="name"></div><div class="f"><label>Category</label><input data-k="category"></div></div>
+    <div class="two"><div class="f"><label>Price</label><input data-k="price" inputmode="numeric"></div><div class="f"><label>Old Price</label><input data-k="oldPrice" inputmode="numeric"></div></div>
+    <div class="two"><div class="f"><label>Currency Symbol</label><input data-k="cur"></div><div class="f"><label>Rating (1-5)</label><input data-k="rating" type="number" min="1" max="5" step="0.1"></div></div>
+    <div class="f"><label>Description</label><textarea data-k="desc"></textarea></div>
+    <div class="sec">📷 Images</div>
+<div id="imgList"></div>
+<div class="addrow"><button class="btn" id="addImgUp">＋ Photo upload</button><button class="btn" id="addImgUrl">＋ Image URL</button></div>
+<div class="sec">✦ Features</div>
+<div id="featList"></div>
+<div class="addrow"><button class="btn" id="addFeat">＋ Feature add</button></div>
+<div class="sec">🎨 Colours</div>
+<div id="colList"></div>
+<div class="addrow"><button class="btn" id="addCol">＋ Colour add</button></div>
+<div class="sec">⚙ Design &amp; Options</div>
+<div class="two"><div class="f"><label>Buy Button Text</label><input data-k="buyText"></div>
+<div class="f"><label>Font</label><select data-k="font"><option value="Georgia,'Times New Roman',serif">Classic (Georgia)</option><option value="'Segoe UI',system-ui,sans-serif">Modern (Sans)</option><option value="'Palatino Linotype',Palatino,serif">Elegant (Palatino)</option><option value="'Courier New',monospace">Typewriter</option></select></div></div>
+<div class="two"><div class="f"><label>Roundness (<span id="rv"></span>)</label><input type="range" data-k="radius" min="0" max="40"></div>
+<div class="f"><label>Layout</label><select data-k="layout"><option value="">Image left</option><option value="rev">Image right</option></select></div></div>
+<label class="chk"><input type="checkbox" data-t="showBadge"> Badge dikhao</label>
+<label class="chk"><input type="checkbox" data-t="showRating"> Rating dikhao</label>
+<label class="chk"><input type="checkbox" data-t="showTrust"> Trust boxes dikhao</label>
+<label class="chk"><input type="checkbox" data-t="showHeart"> Wishlist heart dikhao</label>
+<div class="sec">🛒 Shop</div>
+<div class="f"><label>WhatsApp Number (orders ke liye)</label><input data-k="wa" inputmode="tel" placeholder="923001234567"><small>Country code ke saath, + ke baghair</small></div>
+    <div class="f"><label>Footer Text</label><input data-k="footer"></div>
+    <div class="f"><label>Accent Colour</label><input data-k="accent" type="color" style="height:44px;padding:3px"></div>
+  </div>
+  <div class="ft"><button class="btn" data-close="editOv">Close</button><button class="btn gold" id="saveBtn">Save</button></div>
+</div></div>
 
-    <footer>
-        <p>&copy; 2026 My Website. All rights reserved.</p>
-    </footer>
+<!-- Order -->
+<div class="ov" id="orderOv"><div class="box">
+  <h3>Place Your Order</h3>
+  <div class="sum" id="sum"></div>
+  <div class="f"><label>Your Name</label><input id="oName"></div>
+  <div class="f"><label>Phone</label><input id="oPhone" inputmode="tel"></div>
+  <div class="f"><label>Address</label><textarea id="oAddr"></textarea></div>
+  <div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn" data-close="orderOv">Cancel</button><button class="btn" id="copyOrder">Copy</button><button class="btn gold" id="sendOrder" style="flex:1">Order on WhatsApp</button></div>
+</div></div>
 
-</body>
-</html>
+<!-- Export -->
+<div class="ov" id="expOv"><div class="box" style="text-align:center">
+  <h3>Export Ready ✓</h3>
+  <p style="color:var(--muted);margin-bottom:18px;font-family:'Segoe UI',sans-serif;font-size:.92rem">Ye shop page customers ke liye hoga (edit buttons chhupay hon ge).</p>
+  <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><button class="btn" data-close="expOv">Cancel</button><button class="btn" id="copyHtml">Copy Code</button><butt
